@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Globals;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -21,7 +22,15 @@ public class PlayerScript : MonoBehaviour
     {
         DoJump();
         DoMove();
-        // jump animation goes here
+        if (Helper.DoRayCollisionCheck(gameObject) == false)
+        {
+            anim.SetBool("Jump", true);
+        }
+        else
+        {
+            anim.SetBool("Jump", false);
+        }
+        bool result = Helper.DoRayCollisionCheck(gameObject);
     }
     void DoJump()
     {
@@ -32,7 +41,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (velocity.y < 0.001f)
             {
-                velocity.y = 2.5f;    // give the player a velocity of 2 in the y axis
+                velocity.y = 4f;    // give the player a velocity of 2 in the y axis
 
             }
         }
@@ -59,7 +68,15 @@ public class PlayerScript : MonoBehaviour
         {
             velocity.x = 2;
         }
-        //Walk animation goes here
+        if (velocity.x > 0 || velocity.x < 0)
+        {
+            anim.SetBool("Run", true);
+        }
+        else
+        {
+            anim.SetBool("Run", false);
+        }
+        
         Helper.SetVelocity(gameObject, velocity.x, velocity.y);
         // Flips sprite depending on which way they are facing
         if (velocity.x < -0.5)
@@ -69,6 +86,31 @@ public class PlayerScript : MonoBehaviour
         if (velocity.x > 0.5f)
         {
             Helper.FlipSprite(gameObject, Right);
+        }
+        if (gameObject.tag == "Water")
+        {
+            if (velocity.x < -0.5)
+            {
+                velocity.x = -1;
+            }
+            if (velocity.x > 0.5f)
+            {
+                velocity.x = 1;
+            }
+        }
+    }
+    //void OnTriggerEnter2D(Collider2D other)
+    //{
+    //if (other.gameObject.tag == "Enemy")
+    //{
+    //Destroy(gameObject);
+    //}
+    //}
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Weapon")
+        {
+            SceneManager.LoadScene("Scene 1");
         }
     }
 

@@ -5,7 +5,7 @@ using static Globals;
 public class Helper : MonoBehaviour
 {
     //flips sprite
-    public static void FlipSprite(GameObject obj, int dir)
+    public static void FlipSprite(GameObject obj, float dir)
     {
         if (dir == Left)
         {
@@ -27,7 +27,7 @@ public class Helper : MonoBehaviour
 
     }
 
-    public static int GetObjectDir(GameObject obj)
+    public static float GetObjectDir(GameObject obj)
     {
         float ang = obj.transform.eulerAngles.y;
         if (ang == 180)
@@ -83,7 +83,11 @@ public class Helper : MonoBehaviour
                 hitColor = Color.yellow;
                 return true;
             }
-
+            if (hit.collider.tag == "Water")
+            {
+                hitColor = Color.blue;
+                return true;
+            }
 
         }
         // draw a debug ray to show ray position

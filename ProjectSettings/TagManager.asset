@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Platforms
+  - Enemy
+  - Coins
+  - Player1
+  - Weapon
+  - Water
   layers:
   - Default
   - TransparentFX
