@@ -22,6 +22,7 @@ public class PlayerScript : MonoBehaviour
     {
         DoJump();
         DoMove();
+        shoot();
         if (Helper.DoRayCollisionCheck(gameObject) == false)
         {
             anim.SetBool("Jump", true);
@@ -31,6 +32,14 @@ public class PlayerScript : MonoBehaviour
             anim.SetBool("Jump", false);
         }
         bool result = Helper.DoRayCollisionCheck(gameObject);
+        if (Input.GetKey(KeyCode.Space))
+        {
+            anim.SetBool("Attack", true);
+        }
+        else
+        {
+            anim.SetBool("Attack", false);
+        }
     }
     void DoJump()
     {
@@ -47,6 +56,14 @@ public class PlayerScript : MonoBehaviour
         }
 
         rb.velocity = velocity;
+        if (velocity.y < -0.1)
+        {
+            anim.SetBool("Fall", true);
+        }
+        else
+        {
+            anim.SetBool("Fall", false);
+        }
     }
     void DoMove()
     {
@@ -97,6 +114,22 @@ public class PlayerScript : MonoBehaviour
             {
                 velocity.x = 1;
             }
+        }
+        
+    }
+    void shoot()
+    {
+        if (transform.localRotation.x == 0)
+        {
+            // Launch projectile from player
+            Helper.MakeBullet(projectilePrefab, transform.position.x + 0.12f, transform.position.y + 0.12f, 3.0f, 0f);
+
+        }
+        if (transform.localRotation.x < 0)
+        {
+            // Launch projectile from player
+            Helper.MakeBullet(projectilePrefab, transform.position.x + -0.12f, transform.position.y + 0.12f, -3.0f, 0f);
+
         }
     }
     //void OnTriggerEnter2D(Collider2D other)
