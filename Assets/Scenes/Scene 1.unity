@@ -2895,6 +2895,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 95642780450777835, guid: 45073cb6c0664a84ab23998b346d451e, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5255805917956687579, guid: 45073cb6c0664a84ab23998b346d451e, type: 3}
       propertyPath: m_Name
       value: Ball 1
@@ -13725,7 +13729,7 @@ GameObject:
   - component: {fileID: 1080557794}
   m_Layer: 0
   m_Name: Mummy (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16424,7 +16428,7 @@ GameObject:
   - component: {fileID: 1418761665}
   m_Layer: 0
   m_Name: Mummy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

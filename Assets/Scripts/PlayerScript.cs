@@ -22,7 +22,7 @@ public class PlayerScript : MonoBehaviour
     {
         DoJump();
         DoMove();
-        shoot();
+        
         if (Helper.DoRayCollisionCheck(gameObject) == false)
         {
             anim.SetBool("Jump", true);
@@ -32,7 +32,7 @@ public class PlayerScript : MonoBehaviour
             anim.SetBool("Jump", false);
         }
         bool result = Helper.DoRayCollisionCheck(gameObject);
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey("z"))
         {
             anim.SetBool("Attack", true);
         }
@@ -119,16 +119,16 @@ public class PlayerScript : MonoBehaviour
     }
     void shoot()
     {
-        if (transform.localRotation.x == 0)
+        if (transform.localRotation.y == 0)
         {
             // Launch projectile from player
-            Helper.MakeBullet(projectilePrefab, transform.position.x + 0.12f, transform.position.y + 0.12f, 3.0f, 0f);
+            Helper.MakeBullet(projectilePrefab, transform.position.x + 0.12f, transform.position.y + 0.12f, 5.0f, 0f);
 
         }
-        if (transform.localRotation.x < 0)
+        if (transform.localRotation.y == -180)
         {
             // Launch projectile from player
-            Helper.MakeBullet(projectilePrefab, transform.position.x + -0.12f, transform.position.y + 0.12f, -3.0f, 0f);
+            Helper.MakeBullet(projectilePrefab, transform.position.x + -0.12f, transform.position.y + 0.12f, -5.0f, 0f);
 
         }
     }
